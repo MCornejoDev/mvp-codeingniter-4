@@ -59,3 +59,12 @@ Una vez dentro del contenedor, estaremos en la ruta `/var/www/html`, debemos ins
 ```bash
 composer install
 ```
+
+## Crear las tablas de la base de datos
+
+Usaremos los siguientes comandos para crear las tablas y algunos datos fake.
+
+```bash
+php spark migrate
+php db:seed DatabaseSeeder
+```
