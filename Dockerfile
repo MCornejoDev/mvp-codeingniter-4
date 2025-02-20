@@ -24,11 +24,8 @@ WORKDIR /var/www/html
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Dar permisos correctos a la carpeta writable
-RUN chown -R www-data:www-data /var/www/html && chmod -R 775 /var/www/html
-
 # Exponer el puerto de Apache
 EXPOSE 80
 
 # Comando para iniciar Apache
-CMD ["apache2-foreground"]
+CMD ["bash", "-c", "chown -R www-data:www-data /var/www/html/writable && chmod -R 775 /var/www/html/writable && apache2-foreground"]

@@ -9,10 +9,6 @@ services:
       - ./src:/var/www/html
     depends_on:
       - db
-    env_file:
-      - ./src/.env  # Carga las variables desde el archivo .env
-    environment:
-      - CI_ENVIRONMENT=${CI_ENVIRONMENT}
 
   db:
     image: mysql/mysql-server:8.0
@@ -21,9 +17,9 @@ services:
     env_file:
       - ./src/.env
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: codeigniter
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     ports:
       - "3306:3306"
