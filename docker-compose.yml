@@ -1,0 +1,39 @@
+services:
+  app:
+    build: .
+    container_name: ci4_app
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    env_file:
+      - ./src/.env  # Carga las variables desde el archivo .env
+    environment:
+      - CI_ENVIRONMENT=${CI_ENVIRONMENT}
+
+  db:
+    image: mysql/mysql-server:8.0
+    container_name: ci4_db
+    restart: always
+    env_file:
+      - ./src/.env
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:

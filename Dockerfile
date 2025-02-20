@@ -1,0 +1,34 @@
+# Imagen base con PHP 8.4 y Apache
+FROM php:8.4-apache
+
+# Instalar extensiones necesarias
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    unzip \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    mariadb-client \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl pdo_mysql mbstring exif pcntl bcmath gd mysqli
+
+# Habilitar mod_rewrite para CodeIgniter
+RUN a2enmod rewrite
+
+# Configurar Apache
+COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+
+# Configurar la carpeta de trabajo
+WORKDIR /var/www/html
+
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Dar permisos correctos a la carpeta writable
+RUN chown -R www-data:www-data /var/www/html && chmod -R 775 /var/www/html
+
+# Exponer el puerto de Apache
+EXPOSE 80
+
+# Comando para iniciar Apache
+CMD ["apache2-foreground"]
