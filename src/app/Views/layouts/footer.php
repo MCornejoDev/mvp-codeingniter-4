@@ -1,4 +1,4 @@
-<footer class="fixed bottom-0 w-full mt-5 bg-indigo-600">
+<footer class="bg-black text-white text-center py-3 mt-auto">
     <div class="py-3 text-center">
         <span class="text-white">Miguel Ángel Cornejo Manzanares</span>
     </div>
