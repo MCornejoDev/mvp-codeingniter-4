@@ -66,5 +66,5 @@ Usaremos los siguientes comandos para crear las tablas y algunos datos fake.
 
 ```bash
 php spark migrate
-php db:seed DatabaseSeeder
+php spark db:seed DatabaseSeeder
 ```
