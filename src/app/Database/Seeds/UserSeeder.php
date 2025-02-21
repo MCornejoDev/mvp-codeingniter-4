@@ -12,6 +12,7 @@ class UserSeeder extends Seeder
             'username' => 'test',
             'email'    => 'test@example.com',
             'password' => password_hash('password', PASSWORD_DEFAULT),
+            'is_admin' => true,
         ];
 
         $this->db->table('users')->insert($data);

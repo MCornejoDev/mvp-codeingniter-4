@@ -15,6 +15,10 @@ class AddUser extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'is_admin' => [
+                'type'  => 'BOOLEAN',
+                'default' => false,
+            ],
             'username' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
@@ -28,6 +32,15 @@ class AddUser extends Migration
             'password' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'default' => date('Y-m-d H:i:s'),
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
             ],
         ]);
         $this->forge->addKey('id', true);
