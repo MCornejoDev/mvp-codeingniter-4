@@ -9,7 +9,7 @@ class AddLink extends Migration
     public function up()
     {
         $this->forge->addField([
-            'link_id' => [
+            'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
@@ -20,21 +20,21 @@ class AddLink extends Migration
                 'constraint'     => 5,
                 'unsigned'       => true,
             ],
-            'link_url' => [
+            'url' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'link_url_short' => [
+            'url_short' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'link_clicks' => [
+            'clicks' => [
                 'type'       => 'INT',
                 'constraint' => '100',
             ],
         ]);
-        $this->forge->addKey('link_id', true);
-        $this->forge->addForeignKey('link_user_id', 'users', 'user_id', 'CASCADE', 'CASCADE');
+        $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('link_user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('links');
     }
 

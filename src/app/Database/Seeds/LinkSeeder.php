@@ -11,9 +11,9 @@ class LinkSeeder extends Seeder
     {
         $data = [
             'link_user_id' => 1,
-            'link_url' => 'test',
-            'link_url_short' => 'test',
-            'link_clicks' => 0,
+            'url' => 'test',
+            'url_short' => 'test',
+            'clicks' => 0,
         ];
 
         $this->db->table('links')->insert($data);
