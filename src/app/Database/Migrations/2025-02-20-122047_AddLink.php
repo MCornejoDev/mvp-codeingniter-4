@@ -31,6 +31,16 @@ class AddLink extends Migration
             'clicks' => [
                 'type'       => 'INT',
                 'constraint' => '100',
+                'default'    => 0,
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'default' => date('Y-m-d H:i:s'),
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
             ],
         ]);
         $this->forge->addKey('id', true);
