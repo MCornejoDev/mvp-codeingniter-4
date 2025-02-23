@@ -20,6 +20,11 @@
 
 <body>
     <?= $this->include('layouts/header') ?>
+    <div class="mt-2 w-auto mx-auto">
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+        <?php endif; ?>
+    </div>
     <div class="content container text-center mt-5"><?= $this->renderSection('content') ?></div>
     <?= $this->include('layouts/footer') ?>
 </body>
