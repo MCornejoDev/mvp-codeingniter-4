@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/layout') ?>
 
 <?= $this->section('content') ?>
+<h1 class="mb-5">Listado de usuarios</h1>
 <div class="table-responsive">
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
