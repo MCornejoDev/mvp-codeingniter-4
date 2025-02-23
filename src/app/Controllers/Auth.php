@@ -27,6 +27,7 @@ class Auth extends BaseController
                 'username' => $user['username'],
                 'email' => $user['email'],
                 'logged_in' => true,
+                'is_admin' => $user['is_admin'],
             ]);
             return redirect()->to('/dashboard');
         } else {
