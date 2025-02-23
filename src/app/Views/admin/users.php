@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($users['users'] as $user): ?>
                 <tr>
                     <td><?= htmlspecialchars($user['username']) ?></td>
                     <td><?= htmlspecialchars($user['email']) ?></td>
@@ -20,4 +20,6 @@
         </tbody>
     </table>
 </div>
+<?= view('layouts/pagination', ['pager' => $users['pager']]) ?>
+
 <?= $this->endSection() ?>

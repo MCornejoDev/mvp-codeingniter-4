@@ -6,8 +6,15 @@ use App\Models\User;
 
 class UserService
 {
-    public static function getAll(): array
+    public static function getAll(?int $page = 1, ?int $limit = 5): array
     {
-        return (new User())->findAll();
+        $model = new User();
+
+        $data = [
+            'users' => $model->paginate($limit, 'default', $page),
+            'pager' => $model->pager,
+        ];
+
+        return $data;
     }
 }
