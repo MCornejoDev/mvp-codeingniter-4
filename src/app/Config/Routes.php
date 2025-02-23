@@ -16,9 +16,10 @@ $routes->group('', ['filter' => 'guest'], function ($routes) {
 
 $routes->group('dashboard', ['filter' => 'auth'], function ($routes) {
     $routes->get('/', 'Dashboard::dashboard');
+    $routes->get('links', 'Dashboard::links');
+    $routes->post('postLink', 'Dashboard::postLink');
 
     $routes->group('', ['filter' => 'admin'], function ($routes) {
         $routes->get('users', 'Dashboard::users');
-        $routes->get('links', 'Dashboard::links');
     });
 });

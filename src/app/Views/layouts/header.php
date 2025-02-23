@@ -17,12 +17,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?= site_url('dashboard/users') ?>">Listado de usuarios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= site_url('dashboard/links') ?>">Listado de enlaces</a>
-                        </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('dashboard') ?>">Dashboard</a>
+                        <a class="nav-link" href="<?= site_url('dashboard/links') ?>">Listado de enlaces</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('logout') ?>">Logout</a>
