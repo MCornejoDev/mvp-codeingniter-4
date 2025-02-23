@@ -24,6 +24,9 @@
         <?php if (session()->getFlashdata('error')): ?>
             <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
         <?php endif; ?>
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+        <?php endif; ?>
     </div>
     <div class="content container text-center mt-5"><?= $this->renderSection('content') ?></div>
     <?= $this->include('layouts/footer') ?>
