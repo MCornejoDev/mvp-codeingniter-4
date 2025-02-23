@@ -17,7 +17,11 @@
         <tbody>
             <?php foreach ($links['links'] as $link): ?>
                 <tr>
-                    <td><?= htmlspecialchars($link['url']) ?></td>
+                    <td>
+                        <a href="<?= htmlspecialchars($link['url']) ?>" id="link-<?= htmlspecialchars($link['id']) ?>"
+                            class="links-update-clicks">
+                            <?= htmlspecialchars($link['url']) ?></a>
+                    </td>
                     <td><?= htmlspecialchars($link['clicks']) ?></td>
                     <?php if (session()->get('is_admin')): ?>
                         <td><?= htmlspecialchars($link['url_short']) ?></td>
@@ -29,4 +33,33 @@
     </table>
 </div>
 <?= view('layouts/pagination', ['pager' => $links['pager']]) ?>
+<script>
+    let links = document.querySelectorAll('.links-update-clicks');
+
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            let link_id = this.getAttribute('id').replace('link-', '');
+
+            fetch('/dashboard/updateClicks', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: JSON.stringify({
+                        link_id: link_id
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+
+                    if (data.status === "success") {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error("Error en la solicitud:", error));
+        });
+    }
+</script>
 <?= $this->endSection() ?>

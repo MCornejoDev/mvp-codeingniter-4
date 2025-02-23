@@ -34,4 +34,20 @@ class Dashboard extends BaseController
         LinkService::create($data);
         return redirect()->to('/dashboard')->with('success', 'Enlace creado correctamente.');
     }
+
+    public function updateClicks()
+    {
+        if ($this->request->isAJAX()) {
+            $id = $this->request->getVar('link_id');
+
+            if (!$id) {
+                return $this->response->setJSON(['status' => 'error', 'message' => 'No se recibió el link_id']);
+            }
+
+            LinkService::updateClicks($id);
+            return $this->response->setJSON(['status' => 'success', 'message' => 'Clicks actualizados correctamente']);
+        }
+
+        return $this->response->setJSON(['status' => 'error', 'message' => 'No es una solicitud AJAX']);
+    }
 }

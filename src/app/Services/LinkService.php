@@ -37,4 +37,20 @@ class LinkService
 
         return substr($url, 0, 10);
     }
+
+    public static function updateClicks($link_id)
+    {
+        try {
+            $model = new Link();
+
+            $link = $model->where('id', $link_id)->first();
+
+            $newClicks = (int) $link['clicks'] + 1;
+            $model->where('id', $link_id)->set(['clicks' => $newClicks])->update();
+
+            return true;
+        } catch (Exception $e) {
+            log_message('error', 'Error updating clicks: ' . $e->getMessage());
+        }
+    }
 }
