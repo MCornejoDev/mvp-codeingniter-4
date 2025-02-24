@@ -19,23 +19,20 @@ class LinkService
         return $data;
     }
 
-    public static function create(array $data): bool
+    public static function create(array $data)
     {
         try {
-            $data['url_short'] = self::shortenUrl($data['url']);
-
-            return (new Link())->insert($data);
+            $link = new Link();
+            $link->insert($data);
+            $id = $link->getInsertID();
+            $slug = self::generateSlug($id);
+            $link->update($id, ['url_short' => $slug]);
+            return $link;
         } catch (Exception $e) {
-            //throw $th;
+
+            log_message('error', 'Error create link: ' . $e->getMessage());
+            return false;
         }
-    }
-
-    public static function shortenUrl(string $url): string
-    {
-        $url = str_replace('http://', '', $url);
-        $url = str_replace('https://', '', $url);
-
-        return substr($url, 0, 10);
     }
 
     public static function updateClicks($link_id)
@@ -52,5 +49,13 @@ class LinkService
         } catch (Exception $e) {
             log_message('error', 'Error updating clicks: ' . $e->getMessage());
         }
+    }
+
+
+    private static function generateSlug($id)
+    {
+        $hash = md5($id . microtime());
+
+        return substr(base_convert(substr($hash, 0, 8), 16, 36), 0, 6);
     }
 }
