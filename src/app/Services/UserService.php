@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Exception;
 
 class UserService
 {
@@ -16,5 +17,15 @@ class UserService
         ];
 
         return $data;
+    }
+
+    public static function create(array $data): bool
+    {
+        try {
+            return (new User())->insert($data);
+        } catch (Exception $e) {
+            log_message('error', 'Error create user: ' . $e->getMessage());
+            return false;
+        }
     }
 }

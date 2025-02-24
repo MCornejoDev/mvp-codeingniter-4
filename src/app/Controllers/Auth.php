@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 
 class Auth extends BaseController
 {
@@ -43,15 +44,14 @@ class Auth extends BaseController
 
     public function registerPost()
     {
-        $model = new User();
-
         $data = [
             'username' => $this->request->getPost('username'),
             'email' => $this->request->getPost('email'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
         ];
 
-        $model->insert($data);
+        UserService::create($data);
+
         return redirect()->to('/login')->with('success', 'Registro exitoso, inicia sesión.');
     }
 
