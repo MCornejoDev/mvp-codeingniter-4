@@ -16,12 +16,16 @@ cp env .env
 Editar el archivo `.env` y edita o añade las siguientes variables:
 
 ```bash
+CI_ENVIRONMENT = development
+
 database.default.hostname = ci4_db
 database.default.database = codeigniter
 database.default.username = user
 database.default.password = password
 database.default.DBDriver = MySQLi
 database.default.port = 3306
+
+app.baseURL = 'http://localhost/'
 ```
 
 ## Iniciar el contenedor
@@ -45,8 +49,8 @@ Para iniciar el contenedor ejecutamos:
 ```bash
 docker-compose up -d
 ```
-
-Tambien podemos usar el comando `docker-compose up` para iniciar el contenedor con un log de la consola.
+> [!NOTE]
+> Tambien podemos usar el comando `docker-compose up` para iniciar el contenedor con un log de la consola.
 
 Accedemos al contenedor ejecutando:
 
@@ -68,3 +72,31 @@ Usaremos los siguientes comandos para crear las tablas y algunos datos fake.
 php spark migrate
 php spark db:seed DatabaseSeeder
 ```
+> [!NOTE]
+> Tambien podemos usar el comando `php spark migrate:refresh` para actualizar las tablas.
+
+## Acceso a la aplicación
+
+Accedemos a la aplicación ejecutando:
+
+```bash
+http://localhost/
+```
+
+## Credenciales de acceso
+
+Ya tenemos en funcionamiento credenciales de administrador y un usuario :
+
+Usuario administrador:
+
+```bash
+Correo electrónico: admin@admin.com
+Contraseña: admin
+```
+
+Usuario normal:
+```bash
+Correo electrónico: user@user.com
+Contraseña: user
+```
+
