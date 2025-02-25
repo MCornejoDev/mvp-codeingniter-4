@@ -35,7 +35,7 @@
         </tbody>
     </table>
 </div>
-<?= view('layouts/pagination', ['pager' => $links['pager']]) ?>
+<?= view('components/pagination', ['pager' => $links['pager']]) ?>
 <script>
     let links = document.querySelectorAll('.links-update-clicks');
 

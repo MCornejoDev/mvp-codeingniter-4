@@ -20,6 +20,6 @@
         </tbody>
     </table>
 </div>
-<?= view('layouts/pagination', ['pager' => $users['pager']]) ?>
+<?= view('components/pagination', ['pager' => $users['pager']]) ?>
 
 <?= $this->endSection() ?>
