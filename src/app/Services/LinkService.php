@@ -11,12 +11,21 @@ class LinkService
     {
         $model = new Link();
 
+        $model->where('link_user_id', session()->get('id'));
+
         $data = [
             'links' => $model->paginate($limit, 'default', $page),
             'pager' => $model->pager,
         ];
 
         return $data;
+    }
+
+    public static function getBySlug(string $slug)
+    {
+        $model = new Link();
+
+        return $model->where('url_short', $slug)->first();
     }
 
     public static function create(array $data)

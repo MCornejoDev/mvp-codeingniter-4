@@ -51,4 +51,11 @@ class Dashboard extends BaseController
 
         return $this->response->setJSON(['status' => 'error', 'message' => 'No es una solicitud AJAX']);
     }
+
+    public function link(string $slug)
+    {
+        $link = LinkService::getBySlug($slug);
+        LinkService::updateClicks($link['id']);
+        return redirect()->to($link['url']);
+    }
 }

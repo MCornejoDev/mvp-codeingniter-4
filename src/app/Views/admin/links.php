@@ -7,9 +7,9 @@
         <thead class="table-dark">
             <tr>
                 <th>URL</th>
+                <th>URL corta</th>
                 <th>Clicks</th>
                 <?php if (session()->get('is_admin')): ?>
-                    <th>URL corto</th>
                     <th>Creador</th>
                 <?php endif; ?>
             </tr>
@@ -22,9 +22,12 @@
                             class="links-update-clicks">
                             <?= htmlspecialchars($link['url']) ?></a>
                     </td>
+                    <td>
+                        <a href="<?= site_url('s/' . $link['url_short']) ?>" id="link-<?= htmlspecialchars($link['id']) ?>">
+                            <?= htmlspecialchars($link['url_short']) ?></a>
+                    </td>
                     <td><?= htmlspecialchars($link['clicks']) ?></td>
                     <?php if (session()->get('is_admin')): ?>
-                        <td><?= htmlspecialchars($link['url_short']) ?></td>
                         <td><?= htmlspecialchars($link['user']['username']) ?> (<?= htmlspecialchars($link['user']['email']) ?>)</td>
                     <?php endif; ?>
                 </tr>
@@ -53,8 +56,8 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-
                     if (data.status === "success") {
+                        window.open(this.href, '_blank');
                         window.location.reload();
                     }
                 })

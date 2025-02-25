@@ -17,6 +17,8 @@ $routes->group('', ['filter' => 'guest'], function ($routes) {
 $routes->group('dashboard', ['filter' => 'auth'], function ($routes) {
     $routes->get('/', 'Dashboard::dashboard');
     $routes->get('links', 'Dashboard::links');
+    $routes->get('s/(:alphanum)', 'Dashboard::link/$1');
+
     $routes->post('postLink', 'Dashboard::postLink');
     $routes->post('updateClicks', 'Dashboard::updateClicks');
 
