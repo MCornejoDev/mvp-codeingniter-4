@@ -64,6 +64,16 @@ Una vez dentro del contenedor, estaremos en la ruta `/var/www/html`, debemos ins
 composer install
 ```
 
+También instalaremos las dependencias necesarias para el uso de Tailwind CSS:
+
+```bash
+npm install
+npm run dev
+```
+
+> [!NOTE]
+> Al ejecutar el comando `npm run dev` se iniciará la compilación de CSS y se actualizará automáticamente el archivo `public/css/output.css` con los cambios.
+
 ## Crear las tablas de la base de datos
 
 Usaremos los siguientes comandos para crear las tablas y algunos datos fake.
