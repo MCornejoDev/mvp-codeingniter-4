@@ -1,6 +1,8 @@
 # Imagen base con PHP 8.4 y Apache
 FROM php:8.4-apache
 
+ARG NODE_VERSION=22
+
 # Instalar extensiones necesarias
 RUN apt-get update && apt-get install -y \
     libicu-dev \
@@ -9,8 +11,13 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     mariadb-client \
+    curl \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl pdo_mysql mbstring exif pcntl bcmath gd mysqli
+
+# Instalar Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash && \
+    apt-get install -y nodejs
 
 # Habilitar mod_rewrite para CodeIgniter
 RUN a2enmod rewrite

@@ -3,33 +3,29 @@
 
 <head>
     <title><?= $this->renderSection('page_title', true) ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .content {
-            flex: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('css/output.css') ?>">
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
     <?= $this->include('layouts/header') ?>
-    <div class="mt-2 w-auto mx-auto">
-        <?php if (session()->getFlashdata('error')): ?>
-            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
-        <?php endif; ?>
-        <?php if (session()->getFlashdata('success')): ?>
-            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
-        <?php endif; ?>
+
+    <!-- Mensajes -->
+    <div class="w-full max-w-4xl mx-auto mt-4">
+        <?= $this->include('components/messages') ?>
     </div>
-    <div class="content container text-center mt-5"><?= $this->renderSection('content') ?></div>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 px-4 mt-5">
+        <div class="container mx-auto text-center">
+            <?= $this->renderSection('content') ?>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <?= $this->include('layouts/footer') ?>
+
 </body>
 
 </html>
