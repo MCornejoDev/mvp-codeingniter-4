@@ -16,13 +16,13 @@ class Dashboard extends BaseController
     public function users(): string
     {
         $page = $this->request->getVar('page') ?? 1;
-        return view('admin/users', ['users' => UserService::getAll($page)]);
+        return view('admin/users', UserService::getAll($page));
     }
 
     public function links(): string
     {
         $page = $this->request->getVar('page') ?? 1;
-        return view('admin/links', ['links' => LinkService::getAll($page)]);
+        return view('admin/links', LinkService::getAll($page));
     }
 
     public function postLink(): Response
