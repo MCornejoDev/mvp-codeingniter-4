@@ -32,11 +32,16 @@ class LinkService
     {
         try {
             $link = new Link();
+
+            if (!$link->validate($data)) {
+                return ['status' => 'errors', 'messages' => $link->errors()];
+            }
+
             $link->insert($data);
             $id = $link->getInsertID();
             $slug = self::generateSlug($id);
             $link->update($id, ['url_short' => $slug]);
-            return $link;
+            return ['status' => 'success', 'messages' => 'Enlace creado correctamente'];
         } catch (Exception $e) {
 
             log_message('error', 'Error create link: ' . $e->getMessage());

@@ -13,6 +13,18 @@ class Link extends Model
 
     protected $afterFind = ['getUser'];
 
+    protected $validationRules = [
+        'url' => 'required|valid_url_strict|is_unique[links.url]',
+    ];
+
+    protected $validationMessages = [
+        'url' => [
+            'required' => 'La URL es obligatoria.',
+            'valid_url_strict' => 'La URL ingresada no es válida.',
+            'is_unique' => 'Esta URL ya ha sido acortada.'
+        ]
+    ];
+
     protected function getUser(array $data)
     {
 

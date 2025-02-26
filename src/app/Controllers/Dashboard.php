@@ -32,8 +32,11 @@ class Dashboard extends BaseController
             'link_user_id' => session()->get('id'),
         ];
 
-        LinkService::create($data);
-        return redirect()->to('/dashboard')->with('success', 'Enlace creado correctamente.');
+        $response = LinkService::create($data);
+
+        return redirect()->to('/dashboard')
+            ->withInput()
+            ->with($response['status'], $response['messages']);
     }
 
     public function updateClicks()
