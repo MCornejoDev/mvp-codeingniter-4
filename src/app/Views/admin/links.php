@@ -37,7 +37,7 @@
             </tbody>
         </table>
     </div>
-    <?= $this->data['pager']->links('default', 'pagination_tailwind') ?>
+    <?= $this->data['pager']->links('default', 'tailwindCSS') ?>
 </div>
 
 <script src="<?= site_url('js/links.js') ?>"></script>

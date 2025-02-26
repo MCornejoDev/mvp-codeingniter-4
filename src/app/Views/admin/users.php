@@ -25,7 +25,7 @@
         </table>
     </div>
 
-    <?= $this->data['pager']->links('default', 'pagination_tailwind') ?>
+    <?= $this->data['pager']->links('default', 'tailwindCSS') ?>
 </div>
 
 <?= $this->endSection() ?>
