@@ -1,5 +1,3 @@
-# Proyecto Factoria Ideas Practica
-
 ## Requerimientos
 
 - Docker
